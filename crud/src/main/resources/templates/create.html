@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Formulario</title>
+</head>
+<body>
+    
+        <nav class="container-nav">
+            <a href="/api/view"><li>Home</li></a>
+            <a href="/api"><li>Sair</li></a>
+        </nav>
+    
+
+        <form method="post" action="/api/view/cadastrar" class="container-form">
+            <label>Nome:</label>
+            <input type="text" name="nome">
+            <label>E-mail:</label>
+            <input type="text" name="email">
+            <label>Fone:</label>
+            <input type="text" name="fone">
+            <label>Nascimento:</label>
+            <input type="text" name="nascimento">
+
+            <button type="submit" style="background-color: green;">Cadastrar</button>
+        </form>
+
+    <div class="container-cliente">
+        <div th:each="cliente : ${cliente}" class="container-cliente1">
+            <div class="container-id">
+                <p><span th:text = "${cliente.id}"></span></p>
+            </div>
+            <div class="container-nome">
+                <p><span th:text = "${cliente.nome}"></span></p>
+            </div>
+            <div class="container-email">
+                <p><span th:text = "${cliente.email}"></span></p>
+            </div>
+            <div class="container-fone">
+                <p><span th:text = "${cliente.fone}"></span></p>
+            </div>
+            <div class="container-nascimento">
+                <p><span th:text = "${cliente.nascimento}"></span></p>
+            </div>
+            <a th:href="@{'/api/view/alterar' + ${cliente.id}}"><button type="submit" style="color: black;">Alterar</button></a>
+            <a th:href="@{'/api/view/deletar' + ${cliente.id}}"><button style="background-color: red;">Excluir</button></a>
+        </div>
+    </div>
+
+</body>
+</html>
